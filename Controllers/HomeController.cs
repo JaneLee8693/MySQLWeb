@@ -22,8 +22,8 @@ namespace MySQLWeb.Controllers
         public IActionResult Index()
         {
             var blah = _repo.Bowlers
-                .OrderBy(b => b.BowlerFirstName);
-                //.ToList();
+                .OrderBy(b => b.BowlerID);
+            //.ToList();
 
             return View(blah);
         }

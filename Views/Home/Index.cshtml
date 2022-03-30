@@ -4,18 +4,38 @@
 
 @model IQueryable<Bowler>
 
-<h1>Bowlers</h1>
+<h1>Bowlers @*@ViewBag["Team"]*@</h1>
 
-@*@foreach (Bowler b in Model)
-{
-    <partial name="TeamSummary" model="b" />
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold table-dark">
+        <tr>
+            <td>Bowler ID</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Middle Init</td>
+            <td>Address</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Phone Number</td>
+        </tr>
+    </thead>
 
-}*@
-
-@*<ul>
-        @foreach (var b in Model)
+    <tbody>
+        @foreach (var x in Model)
         {
-            <li>@b.BowlerID - @b.BowlerFirstName @b.BowlerMiddleInit @b.BowlerLastName @b.BowlerAddress @b.BowlerCity @b.BowlerState @b.BowlerZip @b.BowlerPhoneNumber</li>
-        }
+            <tr>
+                <td>@x.BowlerID</td>
+                <td>@x.BowlerFirstName</td>
+                <td>@x.BowlerLastName</td>
+                <td>@x.BowlerMiddleInit</td>
+                <td>@x.BowlerAddress</td>
+                <td>@x.BowlerState</td>
+                <td>@x.BowlerZip</td>
+                <td>@x.BowlerPhoneNumber</td>
 
-    </ul>*@
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-applicationid="@x.BowlerId">Edit</a></td>
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-applicationid="@x.BowlerId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
