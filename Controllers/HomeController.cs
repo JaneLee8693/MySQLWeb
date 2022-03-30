@@ -28,5 +28,32 @@ namespace MySQLWeb.Controllers
             return View(blah);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var application = _repo.Bowlers.Single(x => x.BowlerID == id);
+            return View("AddEdit", application);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Bowler blah)
+        {
+            _repo.SaveChanges(blah);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var application = _repo.Bowlers.Single(x => x.BowlerID == id);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Bowler stuff)
+        {
+            _repo.DeleteBowler(stuff);
+            return RedirectToAction("Index");
+        }
     }
 }

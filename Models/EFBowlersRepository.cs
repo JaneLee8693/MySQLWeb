@@ -14,5 +14,22 @@ namespace MySQLWeb.Models
             _context = temp;
         }
         public IQueryable<Bowler> Bowlers => _context.Bowlers;
+
+        public void SaveChanges(Bowler b)
+        {
+            _context.SaveChanges();
+        }
+
+        public void AddBowler(Bowler b)
+        {
+            _context.Add(b);
+            _context.SaveChanges();
+        }
+
+        public void DeleteBowler(Bowler b)
+        {
+            _context.Remove(b);
+            _context.SaveChanges();
+        }
     }
 }
