@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLWeb", "MySQLWeb.csproj", "{CF0E0A70-0FB7-40A5-8CC8-27B5DD7BDE81}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF0E0A70-0FB7-40A5-8CC8-27B5DD7BDE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF0E0A70-0FB7-40A5-8CC8-27B5DD7BDE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF0E0A70-0FB7-40A5-8CC8-27B5DD7BDE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF0E0A70-0FB7-40A5-8CC8-27B5DD7BDE81}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D55684B5-F5B6-45B0-84CB-865E8839639A}
+	EndGlobalSection
+EndGlobal

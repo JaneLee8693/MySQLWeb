@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IQueryable<Bowler>
+
+<h1>Bowlers</h1>
+
+@*@foreach (Bowler b in Model)
+{
+    <partial name="TeamSummary" model="b" />
+
+}*@
+
+<ul>
+        @foreach (var b in Model)
+        {
+            <li>@b.BowlerID - @b.BowlerFirstName @b.BowlerMiddleInit @b.BowlerLastName @b.BowlerAddress @b.BowlerCity @b.BowlerState @b.BowlerZip @b.BowlerPhoneNumber</li>
+        }
+
+    </ul>
