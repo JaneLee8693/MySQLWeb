@@ -16,7 +16,7 @@ namespace MySQLWeb.Models
         public IQueryable<Bowler> Bowlers => _context.Bowlers;
         public IQueryable<Team> Teams => _context.Teams;
 
-        public void SaveBowlers(Bowler b)
+        public void SaveBowler(Bowler b)
         {
             _context.Update(b);
             _context.SaveChanges();
