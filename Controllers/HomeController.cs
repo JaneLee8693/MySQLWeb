@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MySQLWeb.Models;
@@ -19,15 +20,47 @@ namespace MySQLWeb.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string teamName)
         {
+            //HttpContext.Session.Remove("id");
+
+            ViewBag.TeamName = teamName ?? "Home";
+
             var blah = _repo.Bowlers
-                .OrderBy(b => b.BowlerID)
-                .Include(b => b.TeamId)
-                .Include(b => b.TeamName);
-            //.ToList();
+                .Include(b => b.Team)
+                .Where(b => b.Team.TeamName == teamName || teamName == null)
+                .ToList();
 
             return View(blah);
+        }
+
+        [HttpGet]
+        public IActionResult Form()
+        {
+            //ViewBag.Teams = _repo.Teams.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Form(Bowler b)
+        {
+            //int max = 0;
+            //foreach (var s in _repo.Bowlers)
+            //{
+            //    if (max < s.BowlerID)
+            //    {
+            //        max = s.BowlerID;
+            //    }
+            //}
+            //b.BowlerID = max + 1;
+
+            if (ModelState.IsValid)
+            {
+                //_repo.AddBowler(b);
+                _repo.SaveBowler(b);
+
+                return RedirectToAction("Confirmation", b);
+            }
         }
 
         [HttpGet]
@@ -52,9 +85,9 @@ namespace MySQLWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Bowler stuff)
+        public IActionResult Delete(Bowler b)
         {
-            _repo.DeleteBowler(stuff);
+            _repo.DeleteBowler(b);
             return RedirectToAction("Index");
         }
     }

@@ -22,15 +22,19 @@ namespace MySQLWeb.Models
             _context.SaveChanges();
         }
 
-        public void CreateBowler(Bowler b)
+        public void AddBowler(Bowler b)
         {
-            _context.Add(b);
+            if (b.BowlerID == 0)
+            {
+                _context.Bowlers.Add(b);
+            }
+            
             _context.SaveChanges();
         }
 
         public void DeleteBowler(Bowler b)
         {
-            _context.Remove(b);
+            _context.Bowlers.Remove(b);
             _context.SaveChanges();
         }
     }
