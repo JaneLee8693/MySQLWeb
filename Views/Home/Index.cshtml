@@ -4,59 +4,52 @@
 
 @model List<Bowler>
 
-<h1>@ViewBag.TeamName</h1>
-
-<h2>Bowler Contact List</h2>
-
-<a asp-action="Form" class="btn btn-primary">Create New Bowler</a><br /><br />
+@if (@ViewBag.TeamName != null)
+{
+    <h4>Team Name: @ViewBag.TeamName</h4>
+}
 
 <table class="table table-bordered table-striped">
-    <thead class="font-weight-bold table-dark">
-        <tr>
+    <thead>
+        <tr class="table-info text-center">
             <td>First Name</td>
+            <td>Middle Initial</td>
             <td>Last Name</td>
-            <td>Middle Init</td>
             <td>Address</td>
             <td>City</td>
             <td>State</td>
             <td>Zip</td>
             <td>Phone Number</td>
+            <td>Team Name</td>
         </tr>
     </thead>
 
     <tbody>
-        @if (Model?.Count() > 0)
-        {
-            @foreach (var x in Model)
-            {
-                <tr>
-                    <td>@x.BowlerFirstName</td>
-                    <td>@x.BowlerLastName</td>
-                    @if (x.BowlerMiddleInit == "NULL")
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td>@x.BowlerMiddleInit</td>
-                    }
-                    <td>@x.BowlerAddress</td>
-                    <td>@x.BowlerCity</td>
-                    <td>@x.BowlerState</td>
-                    <td>@x.BowlerZip</td>
-                    <td>@x.BowlerPhoneNumber</td>
 
-                    <td><a class="btn btn-warning" asp-action="Edit" asp-route-id="@x.BowlerID">Edit</a></td>
-                    <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@x.BowlerID">Delete</a></td>
-                </tr>
-            }
-        }
-        else
+
+        @foreach (var b in Model)
         {
             <tr>
-                <td colspan="5" class="text-center">No Bowler</td>
+                <td>@b.BowlerFirstName</td>
+                <td>@b.BowlerMiddleInit</td>
+                <td>@b.BowlerLastName</td>
+                <td>@b.BowlerAddress</td>
+                <td>@b.BowlerCity</td>
+                <td>@b.BowlerState</td>
+                <td>@b.BowlerZip</td>
+                <td>@b.BowlerPhoneNumber</td>
+                <td>@b.Team.TeamName</td>
+
+                <td><a asp-action="Edit" asp-controller="Home" asp-route-id="@b.BowlerID">Edit</a></td>
+                <td><a asp-action="Delete" asp-controller="Home" asp-route-id="@b.BowlerID">Delete</a></td>
             </tr>
         }
 
     </tbody>
 </table>
+
+<a asp-action="Form" class="btn btn-primary">Create New Bowler</a>
+<br />
+<br />
+
+

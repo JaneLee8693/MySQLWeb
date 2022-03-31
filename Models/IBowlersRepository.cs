@@ -11,7 +11,7 @@ namespace MySQLWeb.Models
         IQueryable<Team> Teams { get; }
 
         public void SaveBowler(Bowler b);
-        public void AddBowler(Bowler b);
+        public void UpdateBowler(Bowler b);
         public void DeleteBowler(Bowler b);
     }
 }

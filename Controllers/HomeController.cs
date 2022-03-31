@@ -13,20 +13,20 @@ namespace MySQLWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private IBowlersRepository _repo { get; set; }
+        private IBowlersRepository repo { get; set; }
 
         public HomeController(IBowlersRepository temp)
         {
-            _repo = temp;
+            repo = temp;
         }
 
         public IActionResult Index(string teamName)
         {
             //HttpContext.Session.Remove("id");
 
-            ViewBag.TeamName = teamName ?? "Home";
+            ViewBag.TeamName = teamName;
 
-            var blah = _repo.Bowlers
+            var blah = repo.Bowlers
                 .Include(b => b.Team)
                 .Where(b => b.Team.TeamName == teamName || teamName == null)
                 .ToList();
@@ -45,11 +45,10 @@ namespace MySQLWeb.Controllers
         public IActionResult Form(Bowler b)
         {
 
-
             if (ModelState.IsValid)
             {
                 //_repo.AddBowler(b);
-                _repo.SaveBowler(b);
+                repo.SaveBowler(b);
 
                 return RedirectToAction("Confirmation", b);
             }
@@ -58,28 +57,28 @@ namespace MySQLWeb.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var application = _repo.Bowlers.Single(x => x.BowlerID == id);
+            var application = repo.Bowlers.Single(x => x.BowlerID == id);
             return View("Form", application);
         }
 
         [HttpPost]
-        public IActionResult Edit(Bowler blah)
+        public IActionResult Edit(Bowler b)
         {
-            _repo.SaveBowler(blah);
+            repo.SaveBowler(b);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var application = _repo.Bowlers.Single(x => x.BowlerID == id);
+            var application = repo.Bowlers.Single(x => x.BowlerID == id);
             return View(application);
         }
 
         [HttpPost]
         public IActionResult Delete(Bowler b)
         {
-            _repo.DeleteBowler(b);
+            repo.DeleteBowler(b);
             return RedirectToAction("Index");
         }
     }
