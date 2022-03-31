@@ -14,13 +14,15 @@ namespace MySQLWeb.Models
             _context = temp;
         }
         public IQueryable<Bowler> Bowlers => _context.Bowlers;
+        public IQueryable<Team> Teams => _context.Teams;
 
-        public void SaveChanges(Bowler b)
+        public void SaveBowlers(Bowler b)
         {
+            _context.Update(b);
             _context.SaveChanges();
         }
 
-        public void AddBowler(Bowler b)
+        public void CreateBowler(Bowler b)
         {
             _context.Add(b);
             _context.SaveChanges();

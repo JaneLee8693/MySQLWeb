@@ -8,8 +8,10 @@ namespace MySQLWeb.Models
     public interface IBowlersRepository
     {
         IQueryable<Bowler> Bowlers { get; }
+        IQueryable<Team> Teams { get; }
 
-        public void SaveChanges(Bowler b);
+
+        public void SaveBowler(Bowler b);
         public void AddBowler(Bowler b);
         public void DeleteBowler(Bowler b);
     }

@@ -10,7 +10,8 @@ namespace MySQLWeb.Models
     {
         [Key]
         [Required]
-        public int TeamId { get; set; }
+        public int TeamID { get; set; }
         public string TeamName { get; set; }
+        public int CaptainID { get; set; }
     }
 }

@@ -22,7 +22,9 @@ namespace MySQLWeb.Controllers
         public IActionResult Index()
         {
             var blah = _repo.Bowlers
-                .OrderBy(b => b.BowlerID);
+                .OrderBy(b => b.BowlerID)
+                .Include(b => b.TeamId)
+                .Include(b => b.TeamName);
             //.ToList();
 
             return View(blah);
@@ -32,13 +34,13 @@ namespace MySQLWeb.Controllers
         public IActionResult Edit(int id)
         {
             var application = _repo.Bowlers.Single(x => x.BowlerID == id);
-            return View("AddEdit", application);
+            return View("Form", application);
         }
 
         [HttpPost]
         public IActionResult Edit(Bowler blah)
         {
-            _repo.SaveChanges(blah);
+            _repo.SaveBowler(blah);
             return RedirectToAction("Index");
         }
 
