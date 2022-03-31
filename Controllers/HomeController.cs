@@ -44,15 +44,7 @@ namespace MySQLWeb.Controllers
         [HttpPost]
         public IActionResult Form(Bowler b)
         {
-            //int max = 0;
-            //foreach (var s in _repo.Bowlers)
-            //{
-            //    if (max < s.BowlerID)
-            //    {
-            //        max = s.BowlerID;
-            //    }
-            //}
-            //b.BowlerID = max + 1;
+
 
             if (ModelState.IsValid)
             {
