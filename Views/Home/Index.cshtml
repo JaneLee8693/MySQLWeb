@@ -40,8 +40,8 @@
                 <td>@b.BowlerPhoneNumber</td>
                 <td>@b.Team.TeamName</td>
 
-                <td><a asp-action="Edit" asp-controller="Home" asp-route-id="@b.BowlerID">Edit</a></td>
-                <td><a asp-action="Delete" asp-controller="Home" asp-route-id="@b.BowlerID">Delete</a></td>
+                <td><a asp-action="Edit" asp-controller="Home" asp-route-BowlerId="@b.BowlerID">Edit</a></td>
+                <td><a asp-action="Delete" asp-controller="Home" asp-route-BowlerId="@b.BowlerID">Delete</a></td>
             </tr>
         }
 

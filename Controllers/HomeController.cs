@@ -37,8 +37,10 @@ namespace MySQLWeb.Controllers
         [HttpGet]
         public IActionResult Form()
         {
-            //ViewBag.Teams = _repo.Teams.ToList();
-            return View();
+            ViewBag.New = true;
+            //Bowler b = new Bowler();
+            ViewBag.Team = repo.Teams.ToList();
+            return View("Form");
         }
 
         [HttpPost]
@@ -50,28 +52,35 @@ namespace MySQLWeb.Controllers
                 //_repo.AddBowler(b);
                 repo.SaveBowler(b);
 
-                return RedirectToAction("Confirmation", b);
+                return View("Confirmation");
+            }
+            else
+            {
+                return View();
             }
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(int BowlerId)
         {
-            var application = repo.Bowlers.Single(x => x.BowlerID == id);
+            ViewBag.New = false;
+            ViewBag.Team = repo.Teams.ToList();
+            var application = repo.Bowlers.Single(x => x.BowlerID == BowlerId);
             return View("Form", application);
         }
 
         [HttpPost]
         public IActionResult Edit(Bowler b)
         {
+            repo.UpdateBowler(b);
             repo.SaveBowler(b);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int BowlerId)
         {
-            var application = repo.Bowlers.Single(x => x.BowlerID == id);
+            var application = repo.Bowlers.Single(x => x.BowlerID == BowlerId);
             return View(application);
         }
 

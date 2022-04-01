@@ -87,9 +87,9 @@
         <label asp-for="BowlerPhoneNumber">Phone Number: </label>
         <input asp-for="BowlerPhoneNumber" /><br />
 
-        <label asp-for="TeamID">Team ID: </label>
+        <label asp-for="TeamID">Team Name: </label>
         <select asp-for="TeamID" class="form-control">
-            @foreach (Team t in ViewBag.Teams)
+            @foreach (Team t in ViewBag.Team)
             {
                 <option value="@t.TeamID">@t.TeamName</option>
             }
